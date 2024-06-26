@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime
 # Create your models here.
-
+# Hamidreza Models
 
 
 class Product(models.Model):
