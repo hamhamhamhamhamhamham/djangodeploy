@@ -1,0 +1,79 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block content %}
+  {% comment %}site hero starts{% endcomment %}
+  <main class="mt-10 mx-auto max-w-7xl px-4 sm:st-12 sm: px-6 md:mt-16 lg:mt-20">
+    <div class="sm:text-center lg:text-left">
+      <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+        <span class="block text-indigo-500 xl:inline">Non-premium Prices</span>
+        <span class="block text-green-500 xl:inline"></span>
+      </h1>
+      <p class="mt-3 text-base text-gray-700 sm:mt-5 sm:text-lg">Get The Best Quality Products ...</p>
+    </div>
+  </main>
+  {% comment %}site hero ends{% endcomment %}
+
+  {% comment %}search starts{% endcomment %}
+
+  <form method="get" class="py-10 px-10 flex justify-center">
+    <input type="text" name="product_name" id="product_name" class="px-5 py-5 border-2 border-gray-800 w-1/5 text-2xl text-center focus:outline-none focus:ring focus:ring-pink-500 rounded-lg" placeholder="search product" />
+  </form>
+
+  {% comment %}search ends{% endcomment %}
+  {% comment %}Cards start{% endcomment %}
+
+  <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    {% for item in page_obj %}
+      <a class="mb-4 border-3" href="{% url 'my_papp:product_detail' item.id %}">
+        <div class="rounded overflow-hidden shadow-xl">
+          <div class="w-full h-64">
+            <img class="w-full h-full object-cover" src="{{ item.image.url }}" alt="" />
+          </div>
+          <div class="px-6 py-4">
+            <div class="text-lg font-bold">
+              <div class="mb-2 tracking-wider italic">{{ item.name }}</div>
+              <div class="mb-2 font-bold text-green-500">${{ item.price }}</div>
+
+              <p class="text-gray-700 text-base text-lg font-semibold">{{ item.desc }}</p>
+              <div class="text-md font-semibold my-2 text-purple-500">
+                Posted by
+                <span class="font-mono tracking-widest font-extrabold italic">@{{ item.seller_name }}</span>
+              </div>
+              <span class="font-thin text-red-500 my-6 font-mono">{{ item.create_date }}</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="pagination py-20">
+    <span class="flex justify-center items-center">
+      {% if page_obj.has_previous %}
+        <a class="text-md text-indigo-500 font-bold border-2 border-indigo-500 px-4 py-2 rounded-md mx-2" href="?page=1">First</a>
+        <a class="text-md text-indigo-500 font-bold border-2 border-indigo-500 px-4 py-2 rounded-md mx-2" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+      <span class="text-lg">
+        {% if page_obj.number == page_obj.paginator.num_pages %}
+          <span class="font-bold">Last Page</span>
+        {% else %}
+          <span class="font-extrabold">{{ page_obj.number }}</span> / {{ page_obj.paginator.num_pages }}
+        {% endif %}
+      </span>
+
+      {% if page_obj.has_next %}
+        <a class="text-md text-indigo-500 font-bold border-2 border-indigo-500 px-4 py-2 rounded-md mx-2" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="text-md text-indigo-500 font-bold border-2 border-indigo-500 px-4 py-2 rounded-md mx-2" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+    </span>
+  </div>
+{% endblock %}
+{% comment %}JAVASCRIPT blocks start{% endcomment %}
+{% block jquery %}
+  <script src="{% static 'script/jquery.js' %}"></script>
+{% endblock %}
+
+{% block glow %}
+  <script src="{% static 'script/glow.js' %}"></script>
+{% endblock %}
+{% comment %}JAVASCRIPT blocks end{% endcomment %}

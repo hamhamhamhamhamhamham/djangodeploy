@@ -1,0 +1,35 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block content %}
+  {% comment %}Cards start{% endcomment %}
+  <div class=" p-10 flex flex-col items-center w-full">
+    {% for item in products %}
+      
+        <div class="mb-20 rounded shadow-md flex justify-start w-full">
+          <div class="w-1/5 h-64 bg-indigo-500">
+            <img class="w-full h-full object-cover object-top border-pink-500" src="{{ item.image.url }}" alt="" />
+          </div>
+
+          <div class="font-bold text-lg flex   w-full  justify-between p-10">
+            <div class="wrapper x">
+              <div class="mb-2">{{ item.name }}</div>
+              <div class="mb-2 text-green-500">${{ item.price }}</div>
+              <div class="text-lg mb-2 text-purple-500">
+                <span class="font-mono tracking-widest hover:font-initial">@{{ item.seller_name }}</span> Posted
+              </div>
+              <p class="text-gray-700 text-base text-lg">{{ item.desc }}</p>
+            </div>
+            {% comment %}links start{% endcomment %}
+            <div class="flex items-center">
+              <a class="px-3 py-2 bg-indigo-500 text-white cursor-pointer ml-3 rounded-md text-md" href="{% url 'users:seller_profile' item.seller_name.id %}">Seller...</a>
+              <a class="px-3 py-2 bg-red-600 text-white cursor-pointer ml-3 rounded-md  text-md" href="{% url 'my_papp:delete_product' item.id %}">Delete</a>
+
+              <a class="px-3 py-2 bg-yellow-600 text-white cursor-pointer ml-3 rounded-md  text-md" href="{% url 'my_papp:update_product' item.id %}">Update</a>
+            </div>
+            {% comment %}links end{% endcomment %}
+          </div>
+        </div>
+     
+    {% endfor %}
+  </div>
+{% endblock %}

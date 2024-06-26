@@ -1,0 +1,49 @@
+{% extends 'temp/base.html'%}
+{% load static %}
+
+
+
+{% comment %} content block starts {% endcomment %}
+{% block content%}
+   
+ <div class="wrapper">
+  <h2 class="text-2xl  p-10 font-bold ">👽 Login To Logged In</h2>
+ <form method="post" class="shadow-lg p-10 w-2/5 border rounded m-10 mt-0" >
+  {% csrf_token %}
+  <div class="container text-lg px-2 py-6">
+    <div class="mb-4">
+        <label class="text-gray-700  font-bold mb-4 block ">username</label>
+        <div class=" shadow appearance-none border rounded  px-2 py-2 text-green-700 leading-tight" >
+            {{form.username}}
+        </div>
+      </div>  
+     {% comment %} password , not password1 {% endcomment %}
+      <div class="mb-4">
+        <label class="text-gray-700  font-bold mb-4 block">Password</label>
+        <div class=" shadow appearance-none border rounded  px-2 py-2 text-green-700 leading-tight" >
+            {{form.password}}
+        </div>
+      </div>  
+      
+
+      <input type="submit" value="Login" class="flex bg-green-500 rounded px-4 py-2 font-bold text-white text-sm cursor-pointer  my-7">
+  </div>
+ </form>
+  <span class="p-10 font-semibold text-lg">Do not have an account?<a href="{%url 'users:register'%}" class="font-bold text-blue-500 text-xl tracking-wide	"> Register</a></span>
+ </div>
+
+{%endblock content%}
+{% comment %} content block end {% endcomment %}
+
+
+{% comment %} JAVASCRIPTS blocks start {% endcomment %}
+{% block jquery %}
+  <script src="{% static 'script/jquery.js' %}"></script>
+{% endblock jquery%}
+
+{% block glow %}
+  <script src="{% static 'script/glow.js' %}"></script>
+{% endblock glow%}
+{% comment %} JAVASCRIPTS blocks ends {% endcomment %}
+
+

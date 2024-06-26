@@ -1,0 +1,36 @@
+{% extends 'temp/base.html' %}
+{% block content %}
+  <h2 class="p-10 font-bold text-2xl">🐱‍💻Seller Profile</h2>
+
+  <div class="wrapper p-10 pt-0">
+    <ul class="grid x lg:grid-cols-1 sm:grid-cold-1 shadow-lg w-1/5 mb-20">
+      <li class="bg-red-600 w-full h-full">
+        <img class="w-full h-full object-top object-cover" src="{{ seller.profile.image.url }}" alt="" />
+      </li>
+      <ul class="p-10 break-words">
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">username</span> {{ seller.username }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">email</span> {{ seller.email }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">password</span> {{ seller.password }}
+        </li>
+        <li>
+          <span class="text-lg font-bold text-gray-700 block capitalize">user_id(<span class="lowercase">from</span>User)</span> {{ seller.id }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">user_id(<span class="lowercase">from</span>Profile)</span> {{ seller.profile.user_id }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">profile_id</span>{{ seller.profile.id }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">contact_number</span>{{ seller.profile.contact_number }}
+        </li>
+      </ul>
+      {% comment %} <a class="tracking-widest text-center bg-pink-500 font-bold text-lg text-white py-5" href="{% url 'users:create_profile' %}">Go create profile page</a> {% endcomment %}
+    </ul>
+  </div>
+{% endblock %}

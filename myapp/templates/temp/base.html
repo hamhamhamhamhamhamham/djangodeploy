@@ -1,0 +1,97 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/mystyle.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/btn-shine.scss' %}" />
+    {% comment %} <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        font-size: 1.1em;
+      }
+      ul {
+        background: royalblue;
+        width: 50%;
+        padding: 0.5em;
+        margin: 1em auto;
+        list-style-type: none;
+        transform: skewY(-2deg);
+      }
+      a {
+        color: whitesmoke;
+        text-decoration: none;
+        font-weight: bold;
+        background: red !important;
+      }
+    </style> {% endcomment %}
+
+  </head>
+  <body>
+    <nav class="bg-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 w-full ">
+        <div class="flex justify-start w-full">
+          <div class="flex justify-between items-center space-x-7 w-full">
+            <div>
+              <a class="flex items-center px-2 py-4">
+                <img class="h-12" src="{% static 'images/pxfuel - Copy - Copy.jpg' %}" alt="" />
+                <span class="text-gray-500 text-lg font-semibold ml-2">Hamidreza Market</span>
+              </a>
+            </div>
+            <div class="flex items-center justify-center space-x-1">
+              <a class="py-4 px-3 text-gray-500 font-semibold hover:text-pink-500 hover:bg-gray-200 transition duration-150" href="{% url 'my_papp:product_add' %}">Post</a>
+              <a class="py-4 px-3 text-gray-500 font-semibold hover:text-pink-500 hover:bg-gray-200 transition duration-150" href="{% url 'my_papp:products' %}">View</a>
+              <a class="py-4 px-3 text-gray-500 font-semibold hover:text-pink-500 hover:bg-gray-200 transition duration-150" href="{% url 'my_papp:my_products' %}">MineZ</a>
+              <a href="" class="py-4 px-3 text-gray-500 font-semibold hover:text-pink-500 hover:bg-gray-200 transition duration-150">About</a>
+              <a href="" class="py-4 px-3 text-gray-500 font-semibold hover:text-pink-500 hover:bg-gray-200 transition duration-150">Contact</a>
+            </div>
+            {% comment %}++{% endcomment %}
+            {% if user.is_authenticated %}
+              <div class="flex justify-between items-center">
+                <div class="flex">
+                  <a href="{% url 'users:logout' %}" class="py-2 px-4 rounded  bg-yellow-500 text-gray-800 text-md font-bold">Logout</a>
+                </div>
+                <div class="flex">
+                  <a href="{% url 'users:profile' %}" class="py-2 px-4 rounded font-semibold bg-gray-800 text-yellow-500 text-md font-bold ml-4 mr-6">Profile</a>
+                </div>
+                
+                <div class="  flex items-center justify-between ml-5">
+                  <div class="w-14 h-14 ">
+                    <img class="w-full h-full object-cover object-left rounded-full border-dashed border-2 border-gray-800 block " src="{{ user.profile.image.url }}" alt="" />
+                  </div>
+                  <span class="pl-2 font-bold text-gray-600 font-mono whitespace-nowrap">{{ user.username }}</span>
+                </div>
+              </div>
+            {% else %}
+              <div class="flex">
+                <a href="{% url 'users:login' %}" class="ml-40 py-2 px-4 rounded font-semibold bg-purple-500 text-white text-md font-bold">Login</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+
+    {% comment %}links start{% endcomment %}
+    <ul id="myGlower" class="flex flex-col justify-center font-bold bg-gradient-to-r from-pink-500 to-purple-500 transform -skew-y-3 text-white text-4xl">
+      <li class="flex justify-center">
+        <a class="py-5" href="{% url 'admin:index' %}">Admin</a>
+      </li>
+    </ul>
+    {% comment %}links end{% endcomment %}
+  </body>
+
+  {% comment %}JAVASCRIPT blocks start{% endcomment %}
+  {% block jquery %}
+
+  {% endblock %}
+  {% block glow %}
+
+  {% endblock %}
+  {% comment %}JAVASCRIPT blocks end{% endcomment %}
+</html>

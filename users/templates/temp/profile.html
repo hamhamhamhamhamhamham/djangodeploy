@@ -1,0 +1,40 @@
+{% extends 'temp/base.html' %}
+
+{% block content %}
+  <h2 class="text-3xl font-bold color-gray-700 p-10">🐱‍👤Profile</h2>
+
+  <div class="wrapper p-10 pt-0 ">
+    <ul class="grid x lg:grid-cols-1 sm:grid-cold-1 shadow-lg  w-1/5 mb-20 ">
+      <li class="bg-red-600 w-full h-full">
+        <img class="w-full h-full object-top object-cover" src="{{ user.profile.image.url }}" alt="" />
+      </li>
+      <ul class="p-10 break-words">
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">username</span> {{ user.username }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">password</span> {{ user.password }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">email</span> {{ user.email }}
+        </li>
+        <li>
+          <span class="text-lg font-bold text-gray-700 block capitalize">user_id(<span class="lowercase">from </span>User)</span> {{ user.id }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">user_id(<span class="lowercase">from </span>Profile)</span> {{ user.profile.user_id }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">profile_id</span>{{ user.profile.id }}
+        </li>
+        <li class="mb-5">
+          <span class="text-lg font-bold text-gray-700 block capitalize">contact_number</span>{{ user.profile.contact_number }}
+        </li>
+       
+      </ul>
+      <a class=" tracking-widest text-center bg-pink-500  font-bold text-lg text-white py-5 " href="{% url 'users:create_profile'%}">Go create profile page</a>
+    </ul>
+  </div>
+
+  
+{% endblock %}

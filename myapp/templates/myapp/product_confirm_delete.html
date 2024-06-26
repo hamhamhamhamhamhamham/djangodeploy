@@ -1,0 +1,19 @@
+{% extends 'temp/base.html' %}
+{% block content %}
+  <h2 class="text-3xl font-bold p-10 text-gray-700">📌</h2>
+  <form method="post" class="p-10 bg-white shadow-lg rounded w-3/5">
+{{form}}
+    {% csrf_token %}
+    <div class="mb-5">
+      <label class="text-sm text-gray-700 font-bold" for="">Are you sure want to delete?</label>
+    </div>
+    <div class="mb-5">
+      <label class="text-sm text-gray-700 font-bold" for="">{{ product.name }}</label>
+    </div>
+    <div class="mb-5">
+      <label class="flex w-1/5 h-1/4" for=""><img class="w-full h-full object-cover object-center mb-7 border" src="{{ product.image.url }}" alt="" /></label>
+    </div>
+    <input class="px-3 py-2 bg-red-600 text-white cursor-pointer ml-3 rounded-md font-bold" type="submit" value="Delete" />
+    <a class="px-3 py-2 bg-gray-600 text-white cursor-pointer ml-3 rounded-md font-bold" href="{% url 'my_papp:products' %}">Cancel</a>
+  </form>
+{% endblock %}

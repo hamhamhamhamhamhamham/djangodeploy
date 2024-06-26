@@ -1,0 +1,26 @@
+{% extends 'temp/base.html' %}
+{% load static %}
+{% block content %}
+  <h2 class="p-10 font-bold text-3xl Capitalize">🐱‍🏍create profile</h2>
+  <form enctype="multipart/form-data" class="mb-2 bg-white shadow-2xl pt-8 pb-10 px-10 m-10 px-2 w-1/5" method="post" action="">
+    {% csrf_token %}
+    <div class="mb-6">
+      <input class="border-none" type="file" name="upload" id="upload" />
+    </div>
+    <div class="mb-6">
+      <input class="w-full border py-2 px-4 appearancec-none rounded text-gray-700" placeholder="8888888888" type="text" name="contact_number" id="contact_number" />
+    </div>
+
+    <input class="px-2 py-2 font-bold text-sm bg-green-500 rounded text-white cursor-pointer xtext-center w-1/4" type="submit" value="submit" name="submit" id="submit" />
+  </form>  
+{% endblock %}
+
+{% comment %}JAVASCRIPT blocks start{% endcomment %}
+{% block jquery %}
+  <script src="{% static 'script/jquery.js' %}"></script>
+{% endblock %}
+
+{% block glow %}
+  <script src="{% static 'script/glow.js' %}"></script>
+{% endblock %}
+{% comment %}JAVASCRIPT blocks end{% endcomment %}
